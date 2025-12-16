@@ -1,0 +1,25 @@
+.main-container {
+  padding-top: 98px;
+  padding-bottom: 98px;
+  max-width: 1920px;
+  .card {
+    padding: 0px;
+  }
+
+  .card-img-bottom {
+    width: 100%;
+    object-fit: contain;
+  }
+
+  .item-text {
+    padding-left: 12px;
+    padding-right: 10%;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+  }
+
+  .bitem-choice{
+    width: 120px;
+  }
+}

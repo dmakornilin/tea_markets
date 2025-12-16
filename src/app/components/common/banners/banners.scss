@@ -1,0 +1,92 @@
+.main-container {
+  padding-top: 98px;
+  padding-bottom: 98px;
+  .bitem-choice {
+    width: 48%;
+    margin-bottom: 24px;
+  }
+  .card-img-bottom {
+    width: 100%;
+    object-fit: contain;
+  }
+  .card {
+    padding: 0px;
+  }
+  .item-text {
+    padding-left: 12px;
+    padding-right: 10%;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+  }
+  .card-img-bottom {
+    width: 100%;
+    object-fit: contain;
+  }
+
+  .carousel {
+    position: relative;
+    margin: 0 auto;
+    max-width: 1200px;
+  }
+
+  .slide-carousel-container {
+    position: relative;
+    margin: 0 auto;
+    max-width: 1200px;
+  }
+
+  .slide {
+    padding: 10px;
+  }
+
+  .btn-prev {
+    left: 14px;
+  }
+
+  .btn-next {
+    right: 14px;
+  }
+
+  .btn-prev,
+  .btn-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background-color: whitesmoke;
+    border: none;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+    div {
+      color: rgba(0, 0, 0, 0.4);
+      font-size: 24px;
+      font-weight: bold;
+      transform: translate(0,-6px);
+      //align-items: center;
+      //justify-content: center;
+    }
+  }
+
+  .btn-prev:hover,
+  .btn-next:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+    div {
+      color: #e0eae9;
+    }
+  }
+
+  .slick-next {
+    right: 10%;
+    z-index: 9999;
+  }
+
+  .slick-prev {
+    left: 10%;
+    z-index: 9999;
+  }
+
+}

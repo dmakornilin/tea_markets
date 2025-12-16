@@ -1,0 +1,110 @@
+<div class="d-flex flex-col mb-1 justify-content-center">
+  <div class="card text-center card-order border-0">
+
+    <div class="card-title"><h2>Сделать заказ</h2></div>
+
+    <div class="col order-item-text">
+      <h6>Товар</h6>
+      <input type="text" class="form-control" disabled value="{{teaTitle}}">
+
+    </div>
+
+    <form class="needs-validation" novalidate [formGroup]="orderForm">
+
+      <div class="row g-3 row-cols-1 row-cols-sm-2 row-cols-md-3 justify-content-between order-items-fio">
+
+
+        <div class="col order-item-text">
+          <h6>Имя</h6>
+          <input type="text" class="form-control" formControlName="firstName"  >
+          @if (orderForm.get('firstName')?.invalid &&
+          (orderForm.get('firstName')?.touched || name_dirty)) {
+          <span class="text-danger">
+            @if (orderForm.get('firstName')?.errors?.['required']) {Необходимо ввести имя }
+            @else {Введите корректное имя }
+          </span>
+          }
+        </div>
+
+
+        <div class="col order-item-text">
+          <h6>Фамилия</h6>
+          <input type="text"  class="form-control"  formControlName="lastName">
+          @if (orderForm.get('lastName')?.invalid &&
+          (orderForm.get('lastName')?.touched || lastname_dirty)) {
+            <span class="text-danger">
+            @if (orderForm.get('lastName')?.errors?.['required']) {Необходимо ввести фамилию }
+            @else {Введите корректную фамилию }
+          </span>
+          }
+        </div>
+        <div class="col order-item-text">
+          <h6>Телефон</h6>
+          <input type="text" class="form-control" formControlName="phone">
+          @if (orderForm.get('phone')?.invalid &&
+          (orderForm.get('phone')?.touched || phone_dirty)) {
+            <span class="text-danger">
+            @if (orderForm.get('phone')?.errors?.['required']) {Необходимо ввести телефон }
+            @else { В телефоне 11 цифр }
+          </span>
+          }
+
+
+        </div>
+      </div>
+
+      <div class="row g-3 row-cols-1  row-cols-md-2 justify-content-between order-items-country">
+        <div class="col order-item-text">
+          <h6>Страна</h6>
+          <input type="text" class="form-control" formControlName="country">
+          @if (orderForm.get('country')?.invalid &&
+          (orderForm.get('country')?.touched || country_dirty)) {
+            <span class="text-danger">
+            @if (orderForm.get('country')?.errors?.['required']) {Необходимо ввести страну }
+            @else { Название страны минимум 2 символа }
+          </span>
+          }
+
+        </div>
+        <div class="col order-item-text">
+          <h6>Индекс</h6>
+          <input type="text" class="form-control" formControlName="zip">
+          @if (orderForm.get('zip')?.invalid &&
+          (orderForm.get('zip')?.touched || zip_dirty)) {
+            <span class="text-danger">
+            @if (orderForm.get('zip')?.errors?.['required']) {Необходимо ввести индекс }
+            @else { Индекс содержит от 3 до 10 букв/цифр }
+          </span>
+          }
+
+        </div>
+      </div>
+
+      <div class="col order-item-text">
+        <div><h6>Адрес</h6></div>
+        <input type="text" class="form-control" formControlName="address">
+        @if (orderForm.get('address')?.invalid &&
+        (orderForm.get('address')?.touched || address_dirty)) {
+          <span class="text-danger">
+            @if (orderForm.get('address')?.errors?.['required']) {Необходимо ввести адрес }
+            @else { Введите корректный адрес }
+          </span>
+        }
+
+      </div>
+
+      <div class="col order-item-text">
+        Комментарий к заказу (необязательно)
+        <input type="text" class="form-control" formControlName="comment" >
+      </div>
+    </form>
+
+      <div class="col order-item-text text-center">
+        <button class="btn btn-primary bitem-send" (click)="send_order()">Отправить</button>
+        @if (errorSend) {
+          <div class="text-danger">Произошла ошибка. Попробуйте еще раз</div>
+        }
+      </div>
+
+  </div>
+</div>

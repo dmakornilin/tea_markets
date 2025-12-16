@@ -1,0 +1,14 @@
+<div class="container text-center main-container">
+<div class="slide-carousel-container">
+  <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig" (init)="slickInit($event)" (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)">
+    @for (slide of slides; track slide.id) {
+      <div ngxSlickItem  class="slide">
+        <img src="./images/{{slide.image}}.png" width="100%">
+      </div>
+    }
+  </ngx-slick-carousel>
+  <button class="btn-prev" (click)="prev()" aria-label="Previous slide"><div><</div></button>
+  <button class="btn-next" (click)="next()" aria-label="Next slide"><div>></div></button>
+</div>
+</div>
+
