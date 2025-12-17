@@ -1,8 +1,14 @@
 
-.accordion-body {
-  max-width: 800px;
-  text-align: start;
+.card-faq {
+  width: 900px;
+}
 
+.accordion {
+  padding-block: 48px;
+}
+
+.accordion-body {
+  text-align: start;
   .chart_answer {
     font-size: medium;
   }
@@ -12,19 +18,19 @@
   position: relative;
 
   .popup-overlay {
-    position: absolute;
-    top: -380px;
-    left: 42%;
+    position: fixed;
+    top: calc(50% - 120px);
+    left: calc(50% - 150px);
     font-size: 16px;
     color: #0d2052;
     width: 300px;
     text-align: center;
     border: 1px solid #C6C6C4;
-    margin-top: 200px;
     padding-bottom: 18px;
     border-radius: 15px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     background-color: #9ccbde;
+    z-index: 10;
   }
 
   .is-visible {

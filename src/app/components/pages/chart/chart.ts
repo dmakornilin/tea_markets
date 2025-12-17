@@ -4,13 +4,14 @@ import {ChartItemType} from '../../../types/common/chart-item-type';
 import {RouterLink} from '@angular/router';
 import {Observable} from 'rxjs';
 import {FormsModule} from '@angular/forms';
+import {Banners} from '../../common/banners/banners';
 
 @Component({
   selector: 'chart-component',
   imports: [
     RouterLink,
-    FormsModule
-
+    FormsModule,
+    Banners
   ],
   templateUrl: './chart.html',
   styleUrl: './chart.scss',
@@ -21,9 +22,9 @@ export class Chart implements OnInit, OnDestroy {
   private observable:Observable<void>;
   @ViewChild('popDiv') popupDiv!: ElementRef<HTMLElement>;
 
-  charts: ChartItemType[];
+  protected readonly charts: ChartItemType[];
 
-  constructor(private chartSrv:ChartSrv) {
+  constructor(private readonly chartSrv:ChartSrv) {
     this.charts=chartSrv.getCharts();
     this.observable = new Observable<void>(observer => {
        setTimeout(() => {
@@ -32,14 +33,11 @@ export class Chart implements OnInit, OnDestroy {
     })
   }
 
-  change_expand(chart: ChartItemType) {
+  protected change_expand(chart: ChartItemType) {
     chart.isAnswerShow=!chart.isAnswerShow;
   }
 
-
-
-
-  ngOnInit() {
+  public ngOnInit() {
     this.observable
       .subscribe( () => {
         if (this.popupDiv) {
@@ -48,7 +46,7 @@ export class Chart implements OnInit, OnDestroy {
       } )
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy() {
     this.observable.subscribe();
   }
 }

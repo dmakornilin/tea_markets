@@ -6,8 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class StrLeftNnPipe implements PipeTransform {
 
   transform(value: string ): string {
-    const leftNN=125;
-
+    const leftNN=175;
     let nn:number =value.length;
     if (nn<=leftNN) {
       return value

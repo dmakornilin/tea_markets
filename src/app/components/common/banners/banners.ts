@@ -26,32 +26,15 @@ export class Banners {
     this.slides =bnrSrv.getBanners();
   }
 
-  removeSlide() {
-    this.slides.length = this.slides.length - 1;
-  }
+  slickInit(e:any) {  }
 
-  slickInit(e:any) {
-    // console.log('slick initialized');
-  }
+  breakpoint(e:any) {  }
 
-  breakpoint(e:any) {
-    // console.log('breakpoint');
-  }
+  afterChange(e:any) {  }
 
-  afterChange(e:any) {
-    // console.log('afterChange');
-  }
+  next() {    this.slickModal.slickNext();  }
 
-  next() {
-    this.slickModal.slickNext();
-  }
+  prev() {  this.slickModal.slickPrev();  }
 
-  prev() {
-    this.slickModal.slickPrev();
-  }
-
-  _trackBy(index: number, item: any) {
-    return item.id;
-  }
 
 }

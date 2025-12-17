@@ -1,16 +1,16 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {CatalogSrv} from '../../../services/goods/catalog-srv';
-import {FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {
   addressRegular,
   commonIndexRegular,
   countryRegular,
   nameRegular,
   phoneRegular
-} from '../../../types/common/common-regular';
+} from '../../../utils/common-regular';
 import {Subscription} from 'rxjs';
-import {OrderSendType} from '../../../types/goods/order-send-type';
 import {Router} from '@angular/router';
+import {CatalogItemType} from '../../../types/goods/catalog-item-type';
 
 @Component({
   selector: 'order-component',
@@ -21,19 +21,15 @@ import {Router} from '@angular/router';
   styleUrl: './order.scss',
 })
 
-export class Order implements OnInit, OnDestroy {
+export class Order implements OnDestroy {
 
-
-  get teaId(): number {
-    return this.catalogSrv.choiceTeaId
+  protected teaItem():CatalogItemType{
+    let itm:CatalogItemType = {id: 0, image: '', title: '', price: 0, description: ''};
+    if (this.catalogSrv.tea()) { itm = this.catalogSrv.tea()!; }
+    return itm;
   }
 
-  get teaTitle(): string {
-    return this.catalogSrv.choiceTeaTitle
-  }
-
-
-  private subscrptionOrder: Subscription | null = null;
+  private subscriptionOrder: Subscription | null = null;
 
   public orderForm: FormGroup;
   public errorSend:boolean = false;
@@ -58,16 +54,13 @@ export class Order implements OnInit, OnDestroy {
     })
   }
 
-  ngOnInit() {
-    this.errorSend = false;
+
+  public ngOnDestroy() {
+    this.subscriptionOrder?.unsubscribe()
   }
 
-  ngOnDestroy() {
-    this.subscrptionOrder?.unsubscribe()
-  }
-
-  send_order() {
-    if (this.orderForm.valid) {
+  protected send_order() {
+    if (this.orderForm.valid && this.catalogSrv.tea()) {
       this.catalogSrv.orderData = {
         name: this.orderForm.get('firstName')!.value,
         last_name: this.orderForm.get('lastName')!.value,
@@ -75,12 +68,12 @@ export class Order implements OnInit, OnDestroy {
         country: this.orderForm.get('country')!.value,
         zip: this.orderForm.get('zip')!.value,
         address: this.orderForm.get('address')!.value,
-        product: this.teaId
+        product: this.catalogSrv.tea()!.id
       }
       if (this.orderForm.get('comment')!.value) {
         this.catalogSrv.orderData.comment = this.orderForm.get('comment')!.value
       }
-      this.subscrptionOrder = this.catalogSrv.sendOrder()!
+      this.subscriptionOrder = this.catalogSrv.sendOrder()!
         .subscribe(response => {
           if (response.success && !response.message) {
             this.to_success();
@@ -91,15 +84,14 @@ export class Order implements OnInit, OnDestroy {
     }
   }
 
-  to_success() {
+  protected to_success() {
     this.orderForm.reset();
     this.router.navigate(['/success']);
 
   }
 
-  to_error() {
+  protected to_error() {
     this.errorSend = true;
-
   }
 
 }

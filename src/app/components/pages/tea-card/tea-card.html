@@ -1,18 +1,16 @@
 <div class="container text-center main-container">
   <div class="mb-4 mb-4 display-6 mt-5 ">
     <strong>{{ teaItem.title }}</strong>
-    <div>
+    <div class="container tea_divimg text-center">
       <img src="{{teaItem.image}}" class="card-image" alt="{{teaItem.title}}">
     </div>
-
-    <div class="item-text px-5"><h4>{{ teaItem.description }}</h4></div>
-
+    <div class="item-text text-center"><h6>{{ teaItem.description }}</h6></div>
     <div class="row g-2 row-cols-2 justify-content-between pt-5">
       <div class="item-text text-center">
         <h3>Цена {{ teaItem.price |  currency:'RUB':'руб.':'1.2-2':'ru-RU' }}</h3>
       </div>
       <div class="item-text mb-3 text-center">
-        <button class="btn btn-primary bitem-choice" (click)="to_order()" )>Купить</button>
+        <button class="btn btn-primary bitem-choice" (click)="to_order(teaItem)" )>Купить</button>
       </div>
     </div>
   </div>
