@@ -1,0 +1,43 @@
+
+<app-banners></app-banners>
+
+  <div class="d-flex flex-col mb-1 justify-content-center main-to-popup">
+    <div class="card text-center  border-0">
+      <div class="card-title mx-5 my-2"><h2>Ответы на часто задаваемые вопросы</h2></div>
+      <div class="accordion border-0">
+        @for (chart of charts; track chart.id) {
+          <div class="accordion-item  card-faq">
+            @if (chart.isAnswerShow) {
+              <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" aria-expanded="true"
+                        (click)="change_expand(chart)">
+                  {{ chart.question }}
+                </button>
+                <div class="accordion-collapse collapse show">
+                  <div class="accordion-body"><span class="chart_answer"> {{ chart.answer }}  </span></div>
+                </div>
+              </h2>
+            } @else {
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" aria-expanded="false"
+                        (click)="change_expand(chart)">
+                  {{ chart.question }}
+                </button>
+                <div class="accordion-collapse collapse py-1">
+                  <div class="accordion-body"> {{ chart.answer }}</div>
+                </div>
+              </h2>
+            }
+          </div>
+        }
+      </div>
+    </div>
+    <div class="popup-overlay is-hide"  #popDiv >
+      <a class="popup-close" (click)="close_popup()">X</a>
+      <div class="popup-message">Посмотрите наши чайные коллеции</div>
+      <a class="btn btn-primary bitem-catalog"  routerLink="catalog">Смотреть</a>
+    </div>
+  </div>
+
+
+

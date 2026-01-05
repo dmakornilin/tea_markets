@@ -1,0 +1,59 @@
+
+.card-faq {
+  width: 900px;
+}
+
+.accordion {
+  padding-block: 48px;
+}
+
+.accordion-body {
+  text-align: start;
+  .chart_answer {
+    font-size: medium;
+  }
+}
+
+.main-to-popup {
+  position: relative;
+
+  .popup-overlay {
+    position: fixed;
+    top: calc(50% - 120px);
+    left: calc(50% - 150px);
+    font-size: 16px;
+    color: #0d2052;
+    width: 300px;
+    text-align: center;
+    border: 1px solid #C6C6C4;
+    padding-bottom: 18px;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: #9ccbde;
+    z-index: 10;
+    .popup-close {
+      position: absolute;
+      text-decoration: none;
+      color: #0d2052;
+      top: 0;
+      right: 8px;
+    }
+  }
+
+  .is-visible {
+    display: block;
+  }
+  .is-hide {
+    display: none;
+  }
+
+
+  .popup-message {
+    padding: 12px 16px 12px 16px;
+  }
+
+  .popup-message {
+    padding-bottom: 12px;
+  }
+}
+
