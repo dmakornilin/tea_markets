@@ -1,9 +1,0 @@
-{
-  "routes": {
-    "/tea_markets": {},
-    "/tea_markets/catalog": {},
-    "/tea_markets/order": {},
-    "/tea_markets/success": {},
-    "/tea_markets/tea-card": {}
-  }
-}
